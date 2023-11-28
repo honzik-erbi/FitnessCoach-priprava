@@ -16,7 +16,12 @@ export function MainPage() {
             </Link>
             <Link to={"/qwpeij"}>
                 <p>Bla bla</p>
+            </Link>    
+            
+             <Link to={"/createuser"}>
+                <p>Create User</p>
             </Link>
+            
         </>
     )
 }
