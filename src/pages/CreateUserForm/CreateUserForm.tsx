@@ -5,11 +5,11 @@ export default function CreateUserForm() {
   const [formData, setFormData] = useState({});
   const [info, setInfo] = useState(String);
   const navigate = useNavigate();
-  const redirectToSuccessPage = () => {
-    return navigate("");
+  const redirectToSuccessPage = (id: string) => {
+    return navigate(`/createduser/${id}`);
   }
   const createUser = async () => {
-    /*const data = await fetch("http://localhost:3000/users", {
+    const data = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,13 +18,12 @@ export default function CreateUserForm() {
     });
     const response = await data.json();
     if(data.status == 201){
-        console.log(FormData)
-        //redirectToSuccessPage();
-    
+        redirectToSuccessPage(response.createdUser.result._id);
+        setInfo(response.msg)
     }
     else {
-        setInfo("Nastala chyba")*
-    }*/
+        setInfo("Nastala chyba")
+    }
     console.log(formData)
   };
 
@@ -45,10 +44,11 @@ export default function CreateUserForm() {
       <form>
         <input required type="text" name="username" placeholder="Zadejte svoje uživatelské jméno" onChange={e => handleChange(e)}/>
         <input required type="number" name="phone" placeholder="Zadejte svůj telefon" onChange={e => handleChange(e)}/>      
-        <input required type="text" name="password" placeholder="Zadejte svoje heslo" onChange={e => handleChange(e)}/>
+        <input required type="password" name="password" placeholder="Zadejte svoje heslo" onChange={e => handleChange(e)}/>
         <button onClick={handlePost}>
             Create User
         </button>
+        <p>{info}</p>
       </form>
     </>
   );
