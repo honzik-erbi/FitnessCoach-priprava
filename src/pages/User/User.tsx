@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 export default function User(){
 const { id } = useParams()
@@ -17,6 +17,9 @@ const getUser = async () => {
  setUser(response.data);
  setLoaded(true)
 }
+useEffect(() => {
+  getUser();
+}, [])
 if(!loaded){
     return(
 
