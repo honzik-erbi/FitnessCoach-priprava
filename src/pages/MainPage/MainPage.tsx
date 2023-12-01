@@ -22,6 +22,9 @@ export function MainPage() {
                 <p>Create User</p>
             </Link>
             
+            <Link to={"/users"}>
+                <p>Users</p>
+            </Link>
         </>
     )
 }

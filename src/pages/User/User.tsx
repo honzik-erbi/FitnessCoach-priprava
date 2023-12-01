@@ -24,7 +24,7 @@ if(!loaded){
     return(
 
         <>
-        <p>Nacita se uzivatel</p></>
+        <p>Načíta se uzivatel</p></>
     );
 }
 return(
@@ -34,7 +34,7 @@ return(
     <p>Phone: {user.phone}</p>
     <p>Password: {user.password}</p>
     <Link to={"/"}>
-        <p>Přejit na main page</p>
+        <p>Přejít na main page</p>
     </Link>
     </>
 )
@@ -46,5 +46,5 @@ export type UserType = {
     username: string,
     phone: number,
     password: string,
-    _id : string
+    _id: string
 }

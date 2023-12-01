@@ -7,6 +7,7 @@ import NotFound from "../NotFound/NotFound";
 import CreateUserForm from "../CreateUserForm/CreateUserForm";
 import CreatedUser from "../CreatedUser/CreatedUser";
 import User from "../User/User";
+import UserList from "../UserList/UserList";
 
 export function AppRoutes() {
     return (
@@ -19,6 +20,7 @@ export function AppRoutes() {
                 <Route path="/createuser" element={<CreateUserForm />}/>
                 <Route path="/createduser/:id" element={<CreatedUser />}/>    
                 <Route path="/user/:id" element={<User />}/>
+                <Route path="/users" element={<UserList/>}/>
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </HashRouter>

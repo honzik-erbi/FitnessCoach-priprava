@@ -12,7 +12,7 @@ export default function CreatedUser(){
             <p>Uživatel byl vytvořen!"</p>
    
             <Link to={`/user/${id}`}>
-            <p>Podívat se na uživatel: {id}</p>
+            <p>Podívat se na uživatele: {id}</p>
             </Link>
             <Link to={"/"}>
             <p>Vrátit se na hlavní stránku</p>
