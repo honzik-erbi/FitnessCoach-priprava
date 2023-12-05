@@ -1,10 +1,24 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { UserType } from "../../models/User";
+
 export default function User(){
 const { id } = useParams()
 const [user, setUser] = useState<UserType>()
 const [loaded, setLoaded] = useState(false);
+
+const load = async () => {
+    const user = await getUser(id);
+    if (user.status === 500) return setLoaded(null);
+    if (user.status === 200) {
+        setUser(user.data);
+        setLoaded(true);
+    }
+}
+
+
+
 const getUser = async () => {
   const data = await fetch(`http://localhost:3000/users/${id}`,{
     method: "GET",

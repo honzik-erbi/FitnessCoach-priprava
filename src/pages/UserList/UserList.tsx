@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { UserType } from "../User/User";
+import { UserType, getUsers } from "../../models/User";
 import UserLink from "../../components/UserLink"
 
 export default function UserList() {
     const [users, setUsers] = useState<UserType[]>();
     const [loaded, setLoaded] = useState(false);
+
+    const load = async  () => {
+        const users = await getUsers();
+        if (users.status === 500) return setLoaded(null);
+        if (users.status === 200) {
+            setUsers(users.data)
+            setLoaded(true);
+        }
+    }
+
     
     const getUsers = async () => {
         const data = await fetch('http://localhost:3000/users', {

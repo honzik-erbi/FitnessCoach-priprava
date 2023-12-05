@@ -1,13 +1,23 @@
 import { redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { createUser, UserType } from "../../models/User";
 
 export default function CreateUserForm() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<UserType>();
   const [info, setInfo] = useState(String);
   const navigate = useNavigate();
   const redirectToSuccessPage = (id: string) => {
     return navigate(`/createduser/${id}`);
   }
+  
+  const sendForm = async () => {
+    const user = await createUser(formData);
+    if (user.status === 201) return redirectToSuccessPage(user.data._id);
+    setInfo(user.msg);
+    }
+  }
+
+
   const createUser = async () => {
     const data = await fetch("http://localhost:3000/users", {
       method: "POST",
@@ -35,7 +45,7 @@ export default function CreateUserForm() {
 
   const handlePost = (e: React.FormEvent) => {
     e.preventDefault();
-    createUser();
+    sendForm();
   }
 
   return (
