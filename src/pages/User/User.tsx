@@ -1,64 +1,78 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { UserType } from "../../models/User";
+import { UserType, getUser, updateUser, deleteUser } from "../../models/User";
+import { useNavigate } from "react-router-dom";
 
-export default function User(){
-const { id } = useParams()
-const [user, setUser] = useState<UserType>()
-const [loaded, setLoaded] = useState(false);
+export default function User() {
+  const { id } = useParams();
+  const [user, setUser] = useState<UserType>();
+  const [loaded, setLoaded] = useState(false);
+  const [info, setInfo] = useState(String);
+  const [formData, setFormData] = useState(String);
+  const navigate = useNavigate();
 
-const load = async () => {
+  const load = async () => {
     const user = await getUser(id);
     if (user.status === 500) return setLoaded(null);
     if (user.status === 200) {
-        setUser(user.data);
-        setLoaded(true);
+      setUser(user.data);
+      setLoaded(true);
     }
-}
+  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(e.target.value);
+  };
 
-
-
-const getUser = async () => {
-  const data = await fetch(`http://localhost:3000/users/${id}`,{
-    method: "GET",
-    headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
+  const handleDelete = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (user.username === formData) {
+      const data = await deleteUser(user._id);
+      if (data.status === 200) return redirectToSuccessPage(user._id);
+      setInfo(data.msg);
+      return;
     }
-  })
-  const response = await data.json();
- setUser(response.data);
- setLoaded(true)
-}
-useEffect(() => {
-  getUser();
-}, [])
-if(!loaded){
-    return(
+    setInfo("Špatně zadaný username");
+  };
 
-        <>
-        <p>Načíta se uzivatel</p></>
+  const redirectToSuccessPage = (id: string) => {
+    return navigate(`/deleteduser/${id}`);
+  };
+
+
+  useEffect(() => {
+    load();
+  }, []);
+  if (!loaded) {
+    return (
+      <>
+        <p>Načíta se uzivatel</p>
+      </>
     );
-}
-return(
-
+  }
+  return (
     <>
-    <p>Username: {user.username}</p>
-    <p>Phone: {user.phone}</p>
-    <p>Password: {user.password}</p>
-    <Link to={"/"}>
+      <p>Username: {user.username}</p>
+      <p>Phone: {user.phone}</p>
+      <p>Password: {user.password}</p>
+      <form>
+        <p>Pokud chcete smazat uživatele, napište jeho username</p>
+        <input
+          required
+          type="text"
+          placeholder={user.username}
+          onChange={handleChange}
+        />
+        <button onClick={handleDelete}>Smazat uživatele</button>
+        <p>{info}</p>
+      </form>
+      <Link to={`/updateuserform/${id}`}>
+      <p>Aktualizovat uživatele</p>
+      </Link>
+      
+      <Link to={"/"}>
         <p>Přejít na main page</p>
-    </Link>
+      </Link>
     </>
-)
-
-
-}
-
-export type UserType = {
-    username: string,
-    phone: number,
-    password: string,
-    _id: string
+  );
 }

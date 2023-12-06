@@ -8,6 +8,8 @@ import CreateUserForm from "../CreateUserForm/CreateUserForm";
 import CreatedUser from "../CreatedUser/CreatedUser";
 import User from "../User/User";
 import UserList from "../UserList/UserList";
+import DeletedUser from "../DeletedUser/DeletedUser";
+import UpdateUserForm from "../UpdateUserForm/UpdateUserForm";
 
 export function AppRoutes() {
     return (
@@ -18,7 +20,9 @@ export function AppRoutes() {
                 <Route path="/signin" element={<SignIn />}/>
                 <Route path="/signup" element={<SignUp />}/>  
                 <Route path="/createuser" element={<CreateUserForm />}/>
-                <Route path="/createduser/:id" element={<CreatedUser />}/>    
+                <Route path="/createduser/:id" element={<CreatedUser />}/>
+                <Route path="/deleteduser/:id" element={<DeletedUser />}/>
+                <Route path="/updateuserform/:id" element={<UpdateUserForm />}/>     
                 <Route path="/user/:id" element={<User />}/>
                 <Route path="/users" element={<UserList/>}/>
                 <Route path="*" element={<NotFound />} />

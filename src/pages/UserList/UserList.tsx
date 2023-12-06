@@ -7,36 +7,38 @@ export default function UserList() {
     const [users, setUsers] = useState<UserType[]>();
     const [loaded, setLoaded] = useState(false);
 
-    const load = async  () => {
+    const load = async () => {
         const users = await getUsers();
         if (users.status === 500) return setLoaded(null);
         if (users.status === 200) {
+            console.log(users.data);
             setUsers(users.data)
             setLoaded(true);
         }
     }
-
-    
-    const getUsers = async () => {
-        const data = await fetch('http://localhost:3000/users', {
-            method:"GET",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            }
-        })
-        const response = await data.json();
-        setUsers(response.data);
-        setLoaded(true);
-    };
+ 
     useEffect(() => {
-        getUsers();
+        load();
     },[]);
+
+    if(loaded == null){
+        return (
+            <>
+            <p>Uživatelé nebyli nalezeni</p>
+            <Link to={"/"}>
+                <p>Zpět na hlavní stránku</p>
+            </Link>
+            </>
+        )
+    }
 
     if(!loaded){
     return (
         <>
         <p>Načítám uživatele</p>
+        <Link to={"/"}>
+                <p>Zpět na hlavní stránku</p>
+            </Link>
         </>
     )
     }
