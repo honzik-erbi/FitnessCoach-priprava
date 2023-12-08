@@ -10,6 +10,7 @@ import User from "../User/User";
 import UserList from "../UserList/UserList";
 import DeletedUser from "../DeletedUser/DeletedUser";
 import UpdateUserForm from "../UpdateUserForm/UpdateUserForm";
+import CreateProductForm from "../CreateProductForm/CreateProductForm";
 
 export function AppRoutes() {
     return (
@@ -22,9 +23,10 @@ export function AppRoutes() {
                 <Route path="/createuser" element={<CreateUserForm />}/>
                 <Route path="/createduser/:id" element={<CreatedUser />}/>
                 <Route path="/deleteduser/:id" element={<DeletedUser />}/>
-                <Route path="/updateuserform/:id" element={<UpdateUserForm />}/>     
+                <Route path="/updateuserform/:id" element={<UpdateUserForm/>}/>     
                 <Route path="/user/:id" element={<User />}/>
                 <Route path="/users" element={<UserList/>}/>
+                <Route path="/createproduct" element={<CreateProductForm/>}/>
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </HashRouter>
