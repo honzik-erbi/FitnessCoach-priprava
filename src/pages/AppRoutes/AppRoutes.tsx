@@ -4,12 +4,12 @@ import Dashboard from "../Dashboard/Dashboard";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
 import NotFound from "../NotFound/NotFound";
-import CreateUserForm from "../CreateUserForm/CreateUserForm";
-import CreatedUser from "../CreatedUser/CreatedUser";
-import User from "../User/User";
-import UserList from "../UserList/UserList";
-import DeletedUser from "../DeletedUser/DeletedUser";
-import UpdateUserForm from "../UpdateUserForm/UpdateUserForm";
+import CreateUserForm from "../UserFiles/CreateUserForm/CreateUserForm";
+import CreatedUser from "../UserFiles/CreatedUser/CreatedUser";
+import User from "../UserFiles/User/User";
+import UserList from "../UserFiles/UserList/UserList";
+import DeletedUser from "../UserFiles/DeletedUser/DeletedUser";
+import UpdateUserForm from "../UserFiles/UpdateUserForm/UpdateUserForm";
 import CreateProductForm from "../CreateProductForm/CreateProductForm";
 
 export function AppRoutes() {

@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { UserType, getUser, updateUser } from "../../models/User";
+import { UserType, getUser, updateUser } from "../../../models/User";
 import { useEffect, useState } from "react";
 
 export default function UpdateUserForm() {

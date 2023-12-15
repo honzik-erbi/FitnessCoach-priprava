@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { UserType, getUsers } from "../../models/User";
-import UserLink from "../../components/UserLink"
+import { UserType, getUsers } from "../../../models/User";
+import UserLink from "../../../components/UserLink"
 
 export default function UserList() {
     const [users, setUsers] = useState<UserType[]>();

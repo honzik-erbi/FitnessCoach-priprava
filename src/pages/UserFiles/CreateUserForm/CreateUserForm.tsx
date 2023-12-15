@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { createUser, UserType } from "../../models/User";
+import { createUser, UserType } from "../../../models/User";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function CreateUserForm() {
   const [formData, setFormData] = useState<UserType>();
@@ -27,12 +28,17 @@ export default function CreateUserForm() {
     setInfo(user.msg);
     
   }
+  useEffect(() => {
+    console.log(formData);
+  },[formData])
 
   return (
     <>
       <p>Create User Form</p>
       <form>
       <input required type="text" name="username" placeholder="Zadejte svoje uživatelské jméno" onChange={e => handleChange(e)}/>
+      <input required type="radio" value="Male" name="gender" onChange={e => handleChange(e)}/>
+      <input required type="radio" value="Female" name="gender" onChange={e => handleChange(e)}/>
         <input required type="number" name="phone" placeholder="Zadejte svůj telefon" onChange={e => handleChange(e)}/>      
         <input required type="password" name="password" placeholder="Zadejte svoje heslo" onChange={e => handleChange(e)}/>
         <button onClick={handlePost}>
