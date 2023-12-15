@@ -37,8 +37,10 @@ export default function CreateUserForm() {
       <p>Create User Form</p>
       <form>
       <input required type="text" name="username" placeholder="Zadejte svoje uživatelské jméno" onChange={e => handleChange(e)}/>
+     
       <input required type="radio" value="Male" name="gender" onChange={e => handleChange(e)}/>
       <input required type="radio" value="Female" name="gender" onChange={e => handleChange(e)}/>
+      
         <input required type="number" name="phone" placeholder="Zadejte svůj telefon" onChange={e => handleChange(e)}/>      
         <input required type="password" name="password" placeholder="Zadejte svoje heslo" onChange={e => handleChange(e)}/>
         <button onClick={handlePost}>
